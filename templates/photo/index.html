@@ -1,0 +1,50 @@
+{% extends 'photo/_template.html' %}
+
+{% block title %}Photo Share{% endblock title %}
+
+{% block content %}
+
+<style>
+    img {
+        height:200px;
+        object-fit:cover;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    Category :  
+                </div>
+                <ul class="list-group list-flush">
+                    <li class="list-group-item"><a href="{% url 'index' %}">All</a></li>
+                    {% for cat in category %}
+                        <li class="list-group-item"><a href="{% url 'index' %}?cat={{cat.name}}">{{cat.name}}</a></li>
+                    {% endfor %}
+                    <a href="{% url 'addphoto' %}" class="btn btn-primary btn-block"> Add Photo</a>
+                </ul>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                {% for photo in photos %}
+                <div class="col-4 mt-2">
+                    <div class="card">
+                        <img src="{{photo.images.url}}" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Category : {{photo.category.name}}</h5>
+                            <p class="card-text">{{photo.description}}</p>
+                            <a href="{% url 'viewphoto' photo.id %}" class="btn btn-primary">View</a>
+                            <a href="{% url 'deletephoto' photo.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

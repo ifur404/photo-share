@@ -1,0 +1,23 @@
+{% extends 'photo/_template.html' %}
+
+{% block title %}View Photo{% endblock title %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'index' %}" class="btn btn-info mr-2"> Back </a> View Photo 
+                </div>
+                <div class="card-body">
+                    <img src="{{photo.images.url}}" alt="" class="img-thumbnail"/>
+                    <p>{{photo.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

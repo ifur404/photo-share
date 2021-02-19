@@ -1,0 +1,51 @@
+{% extends 'photo/_template.html' %}
+
+{% block title %}Add Photo{% endblock title %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'index' %}" class="btn btn-info mr-2"> Back </a> Add Photo 
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.errors}}
+                        {% for fom in form %}
+                            <div class="mb-3">
+                                <label class="form-label">{{fom.label}}</label>
+                                {{fom}}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    New Category 
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'addcategory' %}" method="POST">
+                        {% csrf_token %}
+                        {% for formc in formcat %}
+                            <div class="mb-3">
+                                <label class="form-label">{{formc.label}}</label>
+                                {{formc}}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
